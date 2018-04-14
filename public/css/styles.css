@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0; }
+
+header {
+  background-image: url("/assets/header_bg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: Lato, sans-serif;
+  text-align: center; }
