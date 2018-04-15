@@ -1,18 +1,226 @@
 $primaryFont: Oswald, sans-serif;
 $secondaryFont: Lato, sans-serif;
+$navHeight: 36px;
+$footerHeight: 42px;
+$hoverColor: #e64438;
+
+@mixin flexbox-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin line-clamp($num) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+}
+
 body {
   margin: 0;
-  padding: 0;
 }
 
 header {
-  background-image: url('/assets/header_bg.svg');
-  background-repeat: no-repeat;
-  // background-size: contain;
-  background-position: center;
+  @media only screen and (min-width: 600px) {
+    background-image: url('/assets/header_bg.svg');
+    background-repeat: no-repeat;
+    background-position: center;
 
-  font-family: $secondaryFont;
-  text-align: center;
-  img {
+    font-family: $secondaryFont;
+    @include flexbox-center();
+  }
+}
+
+nav {
+  background-color: #3a3a3c;
+  height: $navHeight;
+  font-family: $primaryFont;
+  @include flexbox-center();
+  ul {
+    -webkit-padding-start: 0px;
+    @include flexbox-center();
+    @media only screen and (max-width: 600px) {
+      flex: 1 1 25%;
+      width: 100vw;
+      margin: 0px 16px;
+    }
+    li {
+      color: #818285;
+      display: inline-block;
+
+      @media only screen and (max-width: 600px) {
+        font-size: 1.25rem;
+        flex: 1 1 25%;
+        text-align: center;
+        border-left: 1px grey solid;
+      }
+    }
+    @media only screen and (min-width: 600px) {
+      li:before {
+        content: '\00a0\2022\00a0\00a0';
+        color: #818285;
+        font-size: 11px;
+      }
+      li:first-child:before {
+        content: '';
+      }
+    }
+    li:first-child {
+      border-left: 0;
+    }
+
+    li:hover {
+      color: $hoverColor;
+    }
+  }
+}
+
+main {
+  background-image: url('/assets/bg.jpg');
+  min-height: 84vh;
+
+  @include flexbox-center();
+  flex-direction: column;
+  #content_header {
+    margin-top: 24px;
+
+    @media only screen and (min-width: 992px) {
+      width: 70vw;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 992px) {
+      width: 90vw;
+    }
+
+    @media only screen and (max-width: 600px) {
+      width: 100vw;
+    }
+    width: 65vw;
+
+    .subreddit_header {
+      @include flexbox-center();
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+      margin: 8px;
+      font-size: 4rem;
+      background-color: white;
+      flex: 1 1 100%;
+      overflow: hidden;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+  }
+  #content {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    // @media only screen and (min-width: 992px) {
+    //   width: 40vw;
+    // }
+    @media only screen and (min-width: 992px) {
+      width: 70vw;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 992px) {
+      width: 90vw;
+    }
+
+    @media only screen and (max-width: 600px) {
+      width: 100vw;
+    }
+    // width: 65vw;
+    margin-bottom: 24px;
+  }
+}
+
+.card {
+  box-sizing: border-box;
+  // @media only screen and (min-width: 992px) {
+  //   flex: 1 1 40%;
+  // }
+
+  @media only screen and (min-width: 768px) {
+    flex: 1 1 30%;
+  }
+  @media only screen and (min-width: 600px) and (max-width: 768px) {
+    flex: 1 1 30%;
+  }
+  @media only screen and (max-width: 600px) {
+    flex: 1 1 100%;
+  }
+  // flex: 1 1 40%;
+  padding: 16px;
+  margin: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
+  .card_header {
+    height: 200px;
+    background-image: url('/assets/hawaii.svg');
+    background-size: cover;
+    background-position: center;
+    img {
+      width: 100%;
+    }
+  }
+  .card_content {
+    .content_title {
+      font-size: 24px;
+      font-family: $primaryFont;
+
+      @include line-clamp(2);
+    }
+
+    .content_infolist {
+      .content_author {
+        font-family: $secondaryFont;
+      }
+    }
+
+    ul {
+      -webkit-padding-start: 0px;
+      // @include flexbox-center();
+
+      li {
+        color: #818285;
+        display: inline-block;
+      }
+
+      li:before {
+        content: '\00a0\2022\00a0\00a0';
+        color: #818285;
+        font-size: 11px;
+      }
+      li:first-child:before {
+        content: '';
+      }
+      li:hover {
+        color: #a24928;
+      }
+    }
+
+    .content_body {
+      font-family: $secondaryFont;
+      @include line-clamp(4);
+    }
+  }
+}
+
+.card:hover {
+  border: 8px $hoverColor solid;
+  .card_content {
+    .content_title {
+      color: $hoverColor;
+    }
+  }
+}
+
+footer {
+  background-color: #3a3a3c;
+  height: $footerHeight;
+  @include flexbox-center();
+  a {
+    margin: 6px;
   }
 }
