@@ -135,7 +135,21 @@ function fetchData(subreddit, query) {
 
       let imageUrl = null;
       if (elem.data.hasOwnProperty('preview')) {
-        imageUrl = elem.data.preview.images[0].source.url;
+        // console.log(elem.data.preview);
+        if (elem.data.preview.images[0].variants.hasOwnProperty('gif')) {
+          imageUrl = elem.data.preview.images[0].variants.gif.source.url;
+        } else {
+          imageUrl = elem.data.preview.images[0].source.url;
+        }
+        // if (elem.data.preview.hasOwnProperty('reddit_video_preview')) {
+        //   imageUrl = elem.data.preview.reddit_video_preview.fallback_url;
+        // } else {
+        //   if (elem.data.preview.images[0].variants.hasOwnProperty('gif')) {
+        //     imageUrl = elem.data.preview.images[0].variants.gif.source.url;
+        //   } else {
+        //     imageUrl = elem.data.preview.images[0].source.url;
+        //   }
+        // }
       } else {
         imageUrl = '/assets/no_image.svg';
       }
@@ -171,8 +185,12 @@ function fetchData(subreddit, query) {
             if (bodyResponse[1].data.children[0] !== undefined) {
               cardContentBody.innerText =
                 bodyResponse[1].data.children[0].data.body;
+            } else {
+              cardContentBody.innerText = 'NO TEXT';
             }
           }
+        } else {
+          cardContentBody.innerText = 'NO TEXT';
         }
       };
       cardContentBodyRequest.open('GET', cardContentBodyRequestUrl.href);
