@@ -137,14 +137,13 @@ main {
 
 .card {
   box-sizing: border-box;
-  // @media only screen and (min-width: 992px) {
-  //   flex: 1 1 40%;
-  // }
-
-  @media only screen and (min-width: 768px) {
+  transition: all 0.2s ease-in-out;
+  /* @media only screen and (min-width: 992px) {*/ /*   flex: 1 1 40%;*/
+  /* }*/
+  @media only screen and (min-width: 992px) {
     flex: 1 1 30%;
   }
-  @media only screen and (min-width: 600px) and (max-width: 768px) {
+  @media only screen and (min-width: 600px) and (max-width: 992px) {
     flex: 1 1 30%;
   }
   @media only screen and (max-width: 600px) {
@@ -208,6 +207,7 @@ main {
 }
 
 .card:hover {
+  transform: scale(0.98);
   border: 8px $hoverColor solid;
   .card_content {
     .content_title {

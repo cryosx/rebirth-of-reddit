@@ -98,14 +98,18 @@ main {
 
 .card {
   box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  /* @media only screen and (min-width: 992px) {*/
+  /*   flex: 1 1 40%;*/
+  /* }*/
   padding: 16px;
   margin: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: white; }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 992px) {
     .card {
       flex: 1 1 30%; } }
-  @media only screen and (min-width: 600px) and (max-width: 768px) {
+  @media only screen and (min-width: 600px) and (max-width: 992px) {
     .card {
       flex: 1 1 30%; } }
   @media only screen and (max-width: 600px) {
@@ -148,6 +152,7 @@ main {
     -webkit-box-orient: vertical; }
 
 .card:hover {
+  transform: scale(0.98);
   border: 8px #e64438 solid; }
   .card:hover .card_content .content_title {
     color: #e64438; }

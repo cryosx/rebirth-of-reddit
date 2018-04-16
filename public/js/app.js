@@ -1,9 +1,15 @@
 const navbarList = document.getElementById('navbar_list');
-const contentHeader = document.getElementById('content_header');
-const contentContainer = document.getElementById('content');
+// const contentHeader = document.getElementById('content_header');
+// const contentContainer = document.getElementById('content');
+const main = document.getElementsByTagName('main')[0];
+
 const urlBase = 'https://www.reddit.com/r/';
+
 let afterSub = null;
 let currentSub = null;
+let preloader = null;
+let contentHeader = null;
+let contentContainer = null;
 
 const timeFactors = [
   { factor: 1000, unit: 'millisecond' },
@@ -25,11 +31,44 @@ window.onscroll = function() {
   }
 };
 
-getRandom();
-
 build(['random', 'hawaii', 'anime', 'eyebleach']);
 
+function buildContentHeader() {
+  let contentHeader = document.createElement('div');
+  contentHeader.id = 'content_header';
+  return contentHeader;
+}
+
+function buildContentContainer() {
+  let contentContainer = document.createElement('div');
+  contentContainer.id = 'content';
+  return contentContainer;
+}
+
+function usePreloader(preloader) {
+  main.innerHTML = '';
+  main.appendChild(preloader);
+}
+
+function buildPreloader(target) {
+  let holder = document.createElement('div');
+  let flipPreloader = document.createElement('div');
+  holder.className = 'holder';
+  flipPreloader.className = 'flip-preloader example-1';
+  for (let i = 0; i < 5; i++) {
+    flipPreloader.appendChild(document.createElement('div'));
+  }
+  holder.appendChild(flipPreloader);
+  return holder;
+}
+
 function build(subreddits) {
+  preloader = buildPreloader();
+  contentHeader = buildContentHeader();
+  contentContainer = buildContentContainer();
+
+  getRandom();
+
   buildNav(subreddits);
 }
 
@@ -39,6 +78,7 @@ function buildNav(subreddits) {
     listItem.innerText = elem.toUpperCase();
     navbarList.appendChild(listItem);
     listItem.onclick = function() {
+      usePreloader(preloader);
       contentContainer.innerHTML = '';
       if (elem === 'random') {
         getRandom();
@@ -50,6 +90,7 @@ function buildNav(subreddits) {
 }
 
 function getRandom() {
+  usePreloader(preloader);
   let request = new XMLHttpRequest();
   request.onload = function() {
     let response = JSON.parse(this.response);
@@ -125,7 +166,14 @@ function fetchData(subreddit, query) {
         let bodyResponse = JSON.parse(this.response);
         cardContentBody.className = 'content_body';
         // console.log(bodyResponse[1].data.children[0].data);
-        cardContentBody.innerText = bodyResponse[1].data.children[0].data.body;
+        if (bodyResponse !== undefined) {
+          if (bodyResponse[1].data != undefined) {
+            if (bodyResponse[1].data.children[0] !== undefined) {
+              cardContentBody.innerText =
+                bodyResponse[1].data.children[0].data.body;
+            }
+          }
+        }
       };
       cardContentBodyRequest.open('GET', cardContentBodyRequestUrl.href);
       cardContentBodyRequest.send();
@@ -141,6 +189,9 @@ function fetchData(subreddit, query) {
       card.appendChild(cardContent);
       contentContainer.appendChild(card);
     });
+    main.innerHTML = '';
+    main.appendChild(contentHeader);
+    main.appendChild(contentContainer);
   };
   request.open('GET', getJsonURL(subreddit, query, urlBase));
   request.send();
