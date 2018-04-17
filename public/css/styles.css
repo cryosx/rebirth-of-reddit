@@ -111,7 +111,7 @@ main {
       flex: 1 1 30%; } }
   @media only screen and (min-width: 600px) and (max-width: 992px) {
     .card {
-      flex: 1 1 30%; } }
+      flex: 1 1 45%; } }
   @media only screen and (max-width: 600px) {
     .card {
       flex: 1 1 100%; } }
@@ -123,7 +123,7 @@ main {
     .card .card_header img {
       width: 100%; }
   .card .card_content .content_title {
-    font-size: 24px;
+    font-size: 20px;
     font-family: Oswald, sans-serif;
     overflow: hidden;
     display: -webkit-box;
@@ -134,6 +134,7 @@ main {
   .card .card_content ul {
     -webkit-padding-start: 0px; }
     .card .card_content ul li {
+      font-size: 12px;
       color: #818285;
       display: inline-block; }
     .card .card_content ul li:before {
@@ -145,6 +146,7 @@ main {
     .card .card_content ul li:hover {
       color: #a24928; }
   .card .card_content .content_body {
+    font-size: 14px;
     font-family: Lato, sans-serif;
     overflow: hidden;
     display: -webkit-box;

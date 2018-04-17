@@ -135,21 +135,11 @@ function fetchData(subreddit, query) {
 
       let imageUrl = null;
       if (elem.data.hasOwnProperty('preview')) {
-        // console.log(elem.data.preview);
         if (elem.data.preview.images[0].variants.hasOwnProperty('gif')) {
-          imageUrl = elem.data.preview.images[0].variants.gif.source.url;
+          imageUrl = elem.data.thumbnail;
         } else {
           imageUrl = elem.data.preview.images[0].source.url;
         }
-        // if (elem.data.preview.hasOwnProperty('reddit_video_preview')) {
-        //   imageUrl = elem.data.preview.reddit_video_preview.fallback_url;
-        // } else {
-        //   if (elem.data.preview.images[0].variants.hasOwnProperty('gif')) {
-        //     imageUrl = elem.data.preview.images[0].variants.gif.source.url;
-        //   } else {
-        //     imageUrl = elem.data.preview.images[0].source.url;
-        //   }
-        // }
       } else {
         imageUrl = '/assets/no_image.svg';
       }
