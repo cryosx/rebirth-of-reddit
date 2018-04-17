@@ -3,7 +3,7 @@ body {
 
 @media only screen and (min-width: 600px) {
   header {
-    background-image: url("assets/header_bg.svg");
+    background-image: url("../assets/header_bg.svg");
     background-repeat: no-repeat;
     background-position: center;
     font-family: Lato, sans-serif;
