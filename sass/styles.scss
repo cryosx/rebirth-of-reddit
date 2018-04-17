@@ -77,7 +77,7 @@ nav {
 }
 
 main {
-  background-image: url('/assets/bg.jpg');
+  background-image: url('../assets/bg.jpg');
   min-height: 84vh;
   @include flexbox-center();
   flex-direction: column;

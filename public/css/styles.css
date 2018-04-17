@@ -50,7 +50,7 @@ nav {
       color: #e64438; }
 
 main {
-  background-image: url("/assets/bg.jpg");
+  background-image: url("../assets/bg.jpg");
   min-height: 84vh;
   display: flex;
   align-items: center;

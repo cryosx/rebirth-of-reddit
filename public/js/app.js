@@ -141,7 +141,7 @@ function fetchData(subreddit, query) {
           imageUrl = elem.data.preview.images[0].source.url;
         }
       } else {
-        imageUrl = '/assets/no_image.svg';
+        imageUrl = 'assets/no_image.svg';
       }
       cardHeader.style.backgroundImage = `url(${imageUrl})`;
       cardHeader.dataset.url = imageUrl;
