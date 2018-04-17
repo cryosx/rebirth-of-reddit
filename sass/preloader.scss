@@ -1,0 +1,355 @@
+$colors: (
+  1: #44b3c2,
+  2: #f1a94e,
+  3: #e45641,
+  4: #5d4c46,
+  5: #7b8d8e
+);
+
+.holder {
+  width: 100%;
+  height: 100%;
+  background-color: #ebe5df;
+  min-height: 400px;
+  display: flex;
+  flex: 1;
+}
+.flip-preloader {
+  width: 300px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  perspective: 300px;
+  perspective-origin: 50% 50%;
+}
+.flip-preloader.example-1 {
+  // top: 25%;
+  height: 100px;
+  width: 400px;
+}
+.flip-preloader div {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  background-color: red;
+  left: 0%;
+  box-sizing: border-box;
+  transform-origin: 0% 50%;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.flip-preloader.example-1 div {
+  animation-duration: 4s;
+}
+
+$left: 0;
+@for $i from 1 through 5 {
+  .flip-preloader div:nth-child(#{$i}) {
+    left: percentage($left / 100);
+    background-color: map-get($colors, $i);
+    animation-name: flipPreloader + $i;
+    z-index: $i;
+  }
+
+  $left: $left + 20;
+}
+
+@keyframes flipPreloader1 {
+  0% {
+    transform: rotateY(-180deg);
+    opacity: 0;
+    transform-origin: 0% 50%;
+    background-color: map-get($colors, 1);
+  }
+  4% {
+    background-color: map-get($colors, 1);
+  }
+  5% {
+    background-color: map-get($colors, 5);
+  }
+  10% {
+    transform: rotateY(0deg);
+    opacity: 1;
+    background-color: map-get($colors, 5);
+    transform-origin: 0% 50%;
+  }
+  11% {
+    transform-origin: 100% 50%;
+    background-color: map-get($colors, 1);
+  }
+  48% {
+    z-index: 1;
+  }
+  49% {
+    z-index: 10;
+  }
+  50% {
+    transform: rotateY(0deg);
+  }
+  51% {
+    transform-origin: 100% 50%;
+  }
+  60% {
+    transform: rotateY(180deg);
+    opacity: 1;
+    background-color: map-get($colors, 1);
+  }
+  61% {
+    opacity: 0;
+  }
+  100% {
+    z-index: 10;
+    transform: rotateY(180deg);
+    opacity: 0;
+    transform-origin: 100% 50%;
+    background-color: map-get($colors, 1);
+  }
+}
+
+@keyframes flipPreloader2 {
+  0% {
+    transform: rotateY(-180deg);
+    background-color: map-get($colors, 5);
+    opacity: 0;
+    transform-origin: 0% 50%;
+  }
+  9% {
+    opacity: 0;
+  }
+  10% {
+    transform: rotateY(-180deg);
+    opacity: 1;
+  }
+  15% {
+    background-color: map-get($colors, 5);
+  }
+  20% {
+    background-color: map-get($colors, 5);
+    transform: rotateY(0deg);
+    transform-origin: 0% 50%;
+  }
+  21% {
+    transform-origin: 100% 50%;
+    background-color: map-get($colors, 2);
+  }
+  48% {
+    z-index: 2;
+  }
+  49% {
+    z-index: 9;
+  }
+  60% {
+    opacity: 1;
+    transform: rotateY(0deg);
+    background-color: map-get($colors, 2);
+  }
+  61% {
+    background-color: map-get($colors, 1);
+    transform-origin: 100% 50%;
+  }
+  64% {
+    background-color: map-get($colors, 1);
+  }
+  65% {
+    background-color: map-get($colors, 2);
+  }
+  70% {
+    transform: rotateY(180deg);
+    opacity: 1;
+  }
+  71% {
+    opacity: 0;
+  }
+  100% {
+    z-index: 9;
+    background-color: map-get($colors, 2);
+    transform: rotateY(180deg);
+    opacity: 0;
+    transform-origin: 100% 50%;
+  }
+}
+
+@keyframes flipPreloader3 {
+  0% {
+    transform: rotateY(-180deg);
+    background-color: map-get($colors, 5);
+    opacity: 0;
+    transform-origin: 0% 50%;
+  }
+  19% {
+    opacity: 0;
+  }
+  20% {
+    transform: rotateY(-180deg);
+    opacity: 1;
+  }
+  25% {
+    background-color: map-get($colors, 5);
+  }
+  30% {
+    background-color: map-get($colors, 5);
+    transform: rotateY(0deg);
+    transform-origin: 0% 50%;
+  }
+  31% {
+    transform-origin: 100% 50%;
+    background-color: map-get($colors, 3);
+  }
+  48% {
+    z-index: 3;
+  }
+  49% {
+    z-index: 8;
+  }
+  70% {
+    transform: rotateY(0deg);
+    opactiy: 1;
+    background-color: map-get($colors, 3);
+  }
+  71% {
+    background-color: map-get($colors, 2);
+    transform-origin: 100% 50%;
+  }
+  74% {
+    background-color: map-get($colors, 2);
+  }
+  75% {
+    background-color: map-get($colors, 3);
+  }
+  80% {
+    transform: rotateY(180deg);
+    opacity: 1;
+  }
+  81% {
+    opacity: 0;
+  }
+  100% {
+    z-index: 8;
+    background-color: map-get($colors, 3);
+    transform: rotateY(180deg);
+    opacity: 0;
+    transform-origin: 100% 50%;
+  }
+}
+
+@keyframes flipPreloader4 {
+  0% {
+    transform: rotateY(-180deg);
+    background-color: map-get($colors, 5);
+    opacity: 0;
+    transform-origin: 0% 50%;
+  }
+  29% {
+    opacity: 0;
+  }
+  30% {
+    transform: rotateY(-180deg);
+    opacity: 1;
+  }
+  35% {
+    background-color: map-get($colors, 5);
+  }
+  40% {
+    background-color: map-get($colors, 5);
+    transform: rotateY(0deg);
+    transform-origin: 0% 50%;
+  }
+  41% {
+    transform-origin: 100% 50%;
+    background-color: map-get($colors, 4);
+  }
+  48% {
+    z-index: 4;
+  }
+  49% {
+    z-index: 7;
+  }
+  80% {
+    transform: rotateY(0deg);
+    opacity: 1;
+    background-color: map-get($colors, 4);
+  }
+  81% {
+    background-color: map-get($colors, 3);
+    transform-origin: 100% 50%;
+  }
+  84% {
+    background-color: map-get($colors, 3);
+  }
+  85% {
+    background-color: map-get($colors, 4);
+  }
+  90% {
+    transform: rotateY(180deg);
+    opacity: 1;
+  }
+  91% {
+    opacity: 0;
+  }
+  100% {
+    z-index: 7;
+    background-color: map-get($colors, 4);
+    transform: rotateY(180deg);
+    opacity: 0;
+    transform-origin: 100% 50%;
+  }
+}
+
+@keyframes flipPreloader5 {
+  0% {
+    transform: rotateY(-180deg);
+    background-color: map-get($colors, 5);
+    opacity: 0;
+    transform-origin: 0% 50%;
+  }
+  39% {
+    opacity: 0;
+  }
+  40% {
+    transform: rotateY(-180deg);
+    opacity: 1;
+  }
+  45% {
+    background-color: map-get($colors, 5);
+  }
+  48% {
+    z-index: 5;
+  }
+  49% {
+    z-index: 6;
+  }
+  50% {
+    background-color: map-get($colors, 5);
+    transform: rotateY(0deg);
+    transform-origin: 0% 50%;
+  }
+  51% {
+    transform-origin: 100% 50%;
+    background-color: map-get($colors, 5);
+  }
+  90% {
+    transform: rotateY(0deg);
+    opacity: 1;
+    background-color: map-get($colors, 5);
+  }
+  91% {
+    background-color: map-get($colors, 4);
+    transform-origin: 100% 50%;
+  }
+  94% {
+    background-color: map-get($colors, 4);
+  }
+  95% {
+    background-color: map-get($colors, 5);
+  }
+  100% {
+    z-index: 6;
+    background-color: map-get($colors, 5);
+    transform: rotateY(180deg);
+    opacity: 0;
+    transform-origin: 100% 50%;
+  }
+}
